@@ -1,0 +1,13 @@
+# Backend & AI
+flask
+tensorflow==2.15.0
+keras
+numpy
+pillow
+pandas
+requests
+python-dotenv
+
+# Data Analysis & Visualization
+matplotlib
+seaborn

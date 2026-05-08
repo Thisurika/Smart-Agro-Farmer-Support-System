@@ -1,0 +1,224 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary-50: #f0fdf4;
+  --color-primary-100: #dcfce7;
+  --color-primary-200: #bbf7d0;
+  --color-primary-300: #86efac;
+  --color-primary-400: #4ade80;
+  --color-primary-500: #22c55e;
+  --color-primary-600: #16a34a;
+  --color-primary-700: #15803d;
+  --color-primary-800: #166534;
+  --color-primary-900: #14532d;
+
+  --color-secondary-50: #fffbeb;
+  --color-secondary-100: #fef3c7;
+  --color-secondary-500: #f59e0b;
+  --color-secondary-700: #b45309;
+
+  --color-accent-50: #f0f9ff;
+  --color-accent-500: #0ea5e9;
+  --color-accent-700: #0369a1;
+
+  --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', 'Poppins', sans-serif;
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Premium Design Tokens */
+  --shadow-premium: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  --shadow-premium-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.03);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-blur: 12px;
+
+  /* TailAdmin specific colors */
+  --color-boxdark: #24303F;
+  --color-boxdark-2: #1A222C;
+  --color-strokedark: #2E3A47;
+  --color-meta-4: #313D4A;
+  --color-bodydark: #AEB7C0;
+}
+
+@layer base {
+  body {
+    @apply bg-neutral-50 text-neutral-900 antialiased font-primary transition-colors duration-300;
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-neutral-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300 rounded-full border-2 border-neutral-100 transition-colors hover:bg-neutral-400;
+  }
+  .dark ::-webkit-scrollbar-track {
+    @apply bg-neutral-800;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-600 border-neutral-800 hover:bg-neutral-500;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-premium);
+  }
+  
+  .glass-panel-dark {
+    @apply bg-neutral-900/80 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary-600)] to-emerald-400;
+  }
+
+  .premium-card {
+    @apply transition-all duration-500 ease-out border border-neutral-100 dark:border-neutral-800 rounded-3xl overflow-hidden shadow-xl;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+  }
+  
+  .premium-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-primary-500);
+  }
+
+  /* Input Refinements */
+  .premium-input {
+    @apply w-full px-6 py-4 bg-white dark:bg-neutral-900 rounded-[1.25rem] border border-neutral-200 dark:border-neutral-800 focus:ring-4 focus:ring-primary-500/10 focus:border-primary-500 focus:outline-none transition-all duration-300 dark:text-white placeholder:text-neutral-400 font-medium;
+  }
+
+  .premium-input-error {
+    @apply border-red-500 focus:ring-red-500/10 focus:border-red-500;
+  }
+
+  /* Modal & Toast Refinements */
+  .premium-modal {
+    @apply border-white/20 dark:border-neutral-800/50 shadow-[0_32px_128px_-16px_rgba(0,0,0,0.3)] rounded-[2.5rem];
+    background-color: var(--glass-bg) !important;
+    backdrop-filter: blur(var(--glass-blur)) !important;
+    animation: modal-pop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .premium-toast {
+    @apply border-white/20 dark:border-neutral-800/50 shadow-2xl rounded-[1.25rem] p-5 flex items-center gap-4;
+    background-color: var(--glass-bg) !important;
+    backdrop-filter: blur(var(--glass-blur)) !important;
+    animation: toast-slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes modal-pop {
+    from { opacity: 0; transform: scale(0.92) translateY(30px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  @keyframes toast-slide-up {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* ===== Auth Photo Slideshow ===== */
+.auth-slideshow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.auth-slideshow__image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform, opacity;
+}
+
+.auth-slideshow__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: 1;
+}
+
+.auth-slideshow__footer {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-slideshow__caption {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.auth-slideshow__dots {
+  display: flex;
+  gap: 8px;
+}
+
+.auth-slideshow__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.auth-slideshow__dot--active {
+  background: white;
+  width: 24px;
+  border-radius: 4px;
+}
+
+.auth-slideshow__dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
