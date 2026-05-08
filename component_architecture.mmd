@@ -1,0 +1,71 @@
+graph TD
+    %% Define Styles
+    classDef root fill:#eceff1,stroke:#607d8b,stroke-width:2px;
+    classDef provider fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+    classDef routing fill:#fff3e0,stroke:#e65100,stroke-width:2px;
+    classDef layout fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+    classDef page fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
+    classDef component fill:#e1f5fe,stroke:#0277bd,stroke-width:2px;
+
+    %% Root
+    Root[index.js / main.jsx]:::root
+    
+    %% Providers
+    ProviderGroup[Providers]:::provider
+    ReduxStore(Redux Store):::provider
+    ThemeContext(Theme/Auth Context):::provider
+    Router(BrowserRouter):::routing
+    
+    Root --> ProviderGroup
+    ProviderGroup -.-> ReduxStore
+    ProviderGroup -.-> ThemeContext
+    ProviderGroup --> Router
+    
+    %% App Entry
+    App(App.jsx):::component
+    Router --> App
+    
+    %% Routing logic
+    App --> RouteConfig{Routes}:::routing
+
+    %% Layouts
+    RouteConfig --> MainLayout[Main Layout]:::layout
+    RouteConfig --> AdminLayout[Admin Layout]:::layout
+    RouteConfig --> AuthLayout[Auth Layout]:::layout
+
+    %% Main Layout Components & Pages
+    subgraph Main_Application [Main Application Flow]
+        MainLayout --> Navbar[Navbar]:::component
+        MainLayout --> Footer[Footer]:::component
+        MainLayout --> ChatbotWidget[Floating Chatbot]:::component
+        
+        %% Pages
+        MainLayout --> PublicPages[Public Pages]:::page
+        MainLayout --> UserPages[User Protected Pages]:::page
+        
+        PublicPages --> Home(Home Page):::page
+        PublicPages --> About(About Page):::page
+        
+        UserPages --> UserDashboard(Dashboard):::page
+        UserPages --> CropManager(Crop Management):::page
+        UserPages --> ChemicalRec(Chemical Recommendations):::page
+        UserPages --> WeatherInfo(Weather Forecast):::page
+    end
+
+    %% Admin Layout Components & Pages
+    subgraph Admin_Application [Admin Dashboard Flow]
+        AdminLayout --> AdminSidebar[Sidebar]:::component
+        AdminLayout --> AdminHeader[Header]:::component
+        
+        AdminLayout --> AdminPages[Admin Protected Pages]:::page
+        AdminPages --> AdminDash(Overview):::page
+        AdminPages --> UserManagement(Manage Users):::page
+        AdminPages --> FeedbackManagement(View Feedback):::page
+    end
+
+    %% Auth Flow
+    subgraph Authentication [Authentication Flow]
+        AuthLayout --> Login(Login):::page
+        AuthLayout --> Register(Register):::page
+        AuthLayout --> ForgotPassword(Forgot Password):::page
+    end

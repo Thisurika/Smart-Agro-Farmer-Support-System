@@ -1,0 +1,37 @@
+sequenceDiagram
+    %% Actors and Systems
+    actor Dev as Developer
+    participant Local as Local Environment
+    participant Git as GitHub / Git Repo
+    participant CI as CI / CD Pipeline
+    participant Server as Staging / Prod Server
+    participant DB as MongoDB Cloud
+
+    %% Development Phase
+    Note over Dev,Local: Development Phase
+    Dev->>Local: Write Code (React & Express)
+    Local->>Local: Run Linter & Local Tests
+    Dev->>Local: Commit changes
+    Dev->>Git: Push to feature branch
+
+    %% CI/CD Phase
+    Note over Git,CI: Integration Phase
+    Git->>CI: Trigger Build Pipeline
+    CI->>CI: Install Dependencies
+    CI->>CI: Run Tests (Jest / React Testing Library)
+    alt Tests Fail
+        CI-->>Dev: Send Failure Notification
+    else Tests Pass
+        CI->>Git: Merge to main branch
+    end
+
+    %% Deployment Phase
+    Note over CI,Server: Deployment Phase
+    CI->>Server: Deploy Frontend (Vite Build)
+    CI->>Server: Deploy Backend (Node.js App)
+    Server->>Server: Restart Node Service
+    Server->>DB: Run Database Migrations (if any)
+    
+    %% Monitoring
+    Note over Dev,Server: Monitoring Phase
+    Server-->>Dev: System logs & Error reporting
