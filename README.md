@@ -1,5 +1,6 @@
 # 🌾 Smart Agro System
 <div align="center">
+  
 ![Smart Agro System](https://img.shields.io/badge/Smart%20Agro-System-brightgreen?style=for-the-badge&logo=leaf&logoColor=white)
   
 ![MERN](https://img.shields.io/badge/MERN-Stack-blue?style=for-the-badge)
