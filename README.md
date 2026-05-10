@@ -9,6 +9,8 @@
 
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
+![Screenshot 1](sc/1.png)
+
 **A comprehensive full-stack agricultural management platform built with the MERN stack.**
 
 *Empowering farmers and administrators with smart tools for crop management, chemical & fertilizer tracking, financial oversight, weather monitoring, and community feedback.*
