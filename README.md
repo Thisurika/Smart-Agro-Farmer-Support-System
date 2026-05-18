@@ -13,7 +13,7 @@
 
 **A comprehensive full-stack agricultural management platform built with the MERN stack.**
 
-*Empowering farmers and administrators with smart tools for crop management, chemical & fertilizer tracking, financial oversight, weather monitoring, and community feedback.*
+*Empowering farmers and administrators with smart tools for crop management, chemical & fertilizer tracking, financial oversight, weather monitoring, and community feedback..*
 </div>
 
 ---
