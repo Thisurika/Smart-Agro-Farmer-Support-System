@@ -17,15 +17,6 @@
 </div>
 
 ---
----
-
-## 👩‍💻 My Contribution & Learning
-
-This was a previous semester group project developed as part of our university coursework.
-
-I was involved in the **Feedback Management** area, which includes reviews, star ratings, anonymous feedback, and support tickets. Through this module, I gained an understanding of how user feedback can be collected, managed, and used to improve the system.
-
-I also gained hands on exposure to the **AI Chatbot** setup, which uses a Python backend and Groq API to provide crop related advice. This helped me understand virtual environments, dependency installation using `requirements.txt`, API key configuration with `.env` files, backend execution, and AI-powered feature integration.
 
 ---
 
