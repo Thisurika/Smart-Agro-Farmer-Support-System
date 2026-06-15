@@ -16,9 +16,9 @@
 *Empowering farmers and administrators with smart tools for crop management, chemical & fertilizer tracking, financial oversight, weather monitoring, and community feedback....*
 </div>
 
----
 
 ---
+
 
 ## 📑 Table of Contents
 
